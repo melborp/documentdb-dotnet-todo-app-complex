@@ -9,4 +9,13 @@
       scope="Web\.config$"
       match="//appSettings[@key='ConnectionString']/@value" />
   </parameter>
+  <parameter name="instrumentationkey"
+    description="."
+    defaultValue="__instrumentationkey__"
+    tags="">
+        <parameterEntry
+          kind="XmlFile"
+          scope="ApplicationInsights.config"
+          match="//InstrumentationKey/text()" />
+  </parameter>
 </parameters>
