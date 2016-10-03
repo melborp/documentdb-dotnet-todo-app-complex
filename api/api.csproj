@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Parameters.xml" />
     <Content Include="Web.config" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

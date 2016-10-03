@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<parameters>
+  <parameter name="appsetting connectionstring"
+    description="."
+    defaultValue="__Db_ConnectionString__"
+    tags="">
+    <parameterEntry
+      kind="XmlFile"
+      scope="Web\.config$"
+      match="//appSettings[@key='ConnectionString']/@value" />
+  </parameter>
+</parameters>
