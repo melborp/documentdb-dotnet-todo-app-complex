@@ -7,7 +7,7 @@
     <parameterEntry
       kind="XmlFile"
       scope="Web\.config$"
-      match="//appSettings[@key='ConnectionString']/@value" />
+      match="//appSettings/add[@key='ConnectionString']/@value" />
   </parameter>
   <parameter name="instrumentationkey"
     description="."

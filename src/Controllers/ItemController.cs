@@ -16,7 +16,7 @@
             var apiUrl = ConfigurationManager.AppSettings["api"];
             using (var client = new WebClient())
             {
-                using (var stream = client.OpenRead(new Uri(apiUrl + "/Values/")))
+                using (var stream = client.OpenRead(new Uri(apiUrl + "/api/Values/")))
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     ViewBag.Values = reader.ReadToEnd();
