@@ -15,7 +15,7 @@
     tags="">
         <parameterEntry
           kind="XmlFile"
-          scope="ApplicationInsights.config"
+          scope="ApplicationInsights\.config$"
           match="//InstrumentationKey/text()" />
   </parameter>
 </parameters>
