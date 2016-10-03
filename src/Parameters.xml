@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <parameters>
-  <parameter name="appsetting connectionstring"
+  <parameter name="appsetting endpoint"
     description="."
     defaultValue="__documentdb_endpoint__"
     tags="">
@@ -9,7 +9,7 @@
       scope="Web\.config$"
       match="//appSettings[@key='endpoint']/@value" />
   </parameter>
-  <parameter name="appsetting connectionstring"
+  <parameter name="appsetting authkey"
   description="."
   defaultValue="__documentdb_authkey__"
   tags="">
