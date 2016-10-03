@@ -7,7 +7,7 @@
     <parameterEntry
       kind="XmlFile"
       scope="Web\.config$"
-      match="//appSettings[@key='endpoint']/@value" />
+      match="//appSettings/add[@key='endpoint']/@value" />
   </parameter>
   <parameter name="appsetting authkey"
   description="."
@@ -16,7 +16,7 @@
     <parameterEntry
       kind="XmlFile"
       scope="Web\.config$"
-      match="//appSettings[@key='authKey']/@value" />
+      match="//appSettings/add[@key='authKey']/@value" />
   </parameter>
   <parameter name="instrumentationkey"
 description="."
