@@ -24,7 +24,7 @@ defaultValue="__instrumentationkey__"
 tags="">
     <parameterEntry
       kind="XmlFile"
-          scope="ApplicationInsights\.config$"
-      match="//InstrumentationKey/text()" />
+      scope="Web\.config$"
+      match="//appSettings/add[@key='InstrumentationKey']/@value" />
   </parameter>
 </parameters>

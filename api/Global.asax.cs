@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.ApplicationInsights.Extensibility;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -11,6 +13,7 @@ namespace api
     {
         protected void Application_Start()
         {
+            TelemetryConfiguration.Active.InstrumentationKey = ConfigurationManager.AppSettings["InstrumentationKey"];
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
