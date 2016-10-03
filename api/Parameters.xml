@@ -16,6 +16,6 @@
         <parameterEntry
           kind="XmlFile"
           scope="ApplicationInsights\.config$"
-          match="/ApplicationInsights/InstrumentationKey/text()" />
+          match="//InstrumentationKey/text()" />
   </parameter>
 </parameters>
