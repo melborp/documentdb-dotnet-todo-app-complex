@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<parameters>
+  <parameter name="appsetting connectionstring"
+    description="."
+    defaultValue="__documentdb_endpoint__"
+    tags="">
+    <parameterEntry
+      kind="XmlFile"
+      scope="Web\.config$"
+      match="//appSettings[@key='endpoint']/@value" />
+  </parameter>
+  <parameter name="appsetting connectionstring"
+  description="."
+  defaultValue="__documentdb_authkey__"
+  tags="">
+    <parameterEntry
+      kind="XmlFile"
+      scope="Web\.config$"
+      match="//appSettings[@key='authKey']/@value" />
+  </parameter>
+</parameters>
