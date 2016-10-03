@@ -4,13 +4,27 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
     using Models;
+    using System.Configuration;
+    using System;
+    using System.IO;
 
     public class ItemController : Controller
     {
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
+            var apiUrl = ConfigurationManager.AppSettings["api"];
+            using (var client = new WebClient())
+            {
+                using (var stream = client.OpenRead(new Uri(apiUrl + "/Values/")))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    ViewBag.Values = reader.ReadToEnd();
+                }
+            }
+
             var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
+
             return View(items);
         }
 
