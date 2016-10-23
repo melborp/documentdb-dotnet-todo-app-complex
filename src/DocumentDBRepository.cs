@@ -16,6 +16,37 @@
         private static readonly string CollectionId = ConfigurationManager.AppSettings["collection"];
         private static DocumentClient client;
 
+        /*
+        private static TelemetryClient telemetry = new TelemetryClient();
+
+        public static async Task<T> GetItemAsync(string id)
+        {
+            try
+            {
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+                watch.Stop();
+                Dictionary<string, string> classificationAndFilter = new Dictionary<string, string>();
+                classificationAndFilter.Add("Performance", "Performance");
+                classificationAndFilter.Add("DocumentDB", "DocumentDB");
+                telemetry.TrackMetric("DocumentDB.GetItem (ms)", watch.ElapsedMilliseconds, classificationAndFilter);
+                return (T)(dynamic)document;
+            }
+            catch (DocumentClientException e)
+            {
+                if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+        */
+
         public static async Task<T> GetItemAsync(string id)
         {
             try
