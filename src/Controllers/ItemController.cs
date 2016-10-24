@@ -55,6 +55,8 @@
         public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Name,Description,Completed")] Item item)
         {
             TracePost("DeleteConfirmedAsync");
+            var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+            telemetry.TrackEvent("Created New Todo");
             if (ModelState.IsValid)
             {
                 await DocumentDBRepository<Item>.CreateItemAsync(item);
@@ -72,6 +74,8 @@
             TracePost("DeleteConfirmedAsync");
             if (ModelState.IsValid)
             {
+                var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+                telemetry.TrackEvent("Edited Todo");
                 await DocumentDBRepository<Item>.UpdateItemAsync(item.Id, item);
                 return RedirectToAction("Index");
             }
@@ -119,6 +123,8 @@
         public async Task<ActionResult> DeleteConfirmedAsync([Bind(Include = "Id")] string id)
         {
             TracePost("DeleteConfirmedAsync");
+            var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+            telemetry.TrackEvent("Deleted Todo");
             await DocumentDBRepository<Item>.DeleteItemAsync(id);
             return RedirectToAction("Index");
         }
