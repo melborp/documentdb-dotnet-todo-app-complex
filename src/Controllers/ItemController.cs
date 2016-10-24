@@ -59,6 +59,8 @@
             telemetry.TrackEvent("Created New Todo");
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrWhiteSpace(item.Name))
+                    throw new ArgumentOutOfRangeException("name", "Name must be between 1 and n.");
                 await DocumentDBRepository<Item>.CreateItemAsync(item);
                 return RedirectToAction("Index");
             }
