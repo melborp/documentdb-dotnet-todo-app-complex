@@ -25,6 +25,23 @@
 
             var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
 
+            /*
+            //Fake dependency call for demo
+            var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+            var success = false;
+            var startTime = DateTime.UtcNow;
+            var timer = System.Diagnostics.Stopwatch.StartNew();
+            try
+            {
+                ViewData["Message"] = "Your application description page.";
+            }
+            finally
+            {
+                timer.Stop();
+                telemetry.TrackDependency("ViewDataAsDependancy", "CallSomeStuff", startTime, timer.Elapsed, success);
+            }
+            */
+
             return View(items);
         }
 

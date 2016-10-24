@@ -9,6 +9,7 @@
     using Microsoft.Azure.Documents;
     using Microsoft.Azure.Documents.Client;
     using Microsoft.Azure.Documents.Linq;
+    using System.Diagnostics;
 
     public static class DocumentDBRepository<T> where T : class
     {
@@ -17,7 +18,7 @@
         private static DocumentClient client;
 
         /*
-        private static TelemetryClient telemetry = new TelemetryClient();
+        private static Microsoft.ApplicationInsights.TelemetryClient telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
 
         public static async Task<T> GetItemAsync(string id)
         {
@@ -46,6 +47,7 @@
             }
         }
         */
+
 
         public static async Task<T> GetItemAsync(string id)
         {
