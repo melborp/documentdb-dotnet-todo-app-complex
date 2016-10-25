@@ -10,6 +10,18 @@
 
     public class ItemController : Controller
     {
+        /*
+        private void TracePost(string method)
+        {
+            //Store the posted data
+            Request.InputStream.Seek(0, SeekOrigin.Begin);
+            string rawPostData = new StreamReader(Request.InputStream).ReadToEnd();
+            var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
+            telemetry.TrackTrace(rawPostData,
+                           Microsoft.ApplicationInsights.DataContracts.SeverityLevel.Warning,
+                           new Dictionary<string, string> { { "PostData", "true" }, { "Method", method } });
+        }
+         */
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
@@ -24,6 +36,7 @@
             }
 
             var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
+            return View(items);
 
             /*
             //Fake dependency call for demo
@@ -33,16 +46,25 @@
             var timer = System.Diagnostics.Stopwatch.StartNew();
             try
             {
-                ViewData["Message"] = "Your application description page.";
+                var apiUrl = ConfigurationManager.AppSettings["api"];
+                using (var client = new WebClient())
+                {
+                    using (var stream = client.OpenRead(new Uri(apiUrl + "/api/Values/")))
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        ViewBag.Values = reader.ReadToEnd();
+                    }
+                }
+
+                var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
+                return View(items);
             }
             finally
             {
                 timer.Stop();
-                telemetry.TrackDependency("ViewDataAsDependancy", "CallSomeStuff", startTime, timer.Elapsed, success);
+                telemetry.TrackDependency("IndexAsyncFakeDependency", "IndexAsync - Fake Call", startTime, timer.Elapsed, success);
             }
             */
-
-            return View(items);
         }
 
 #pragma warning disable 1998
