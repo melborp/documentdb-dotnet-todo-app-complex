@@ -1,0 +1,10 @@
+﻿let recentReqs = requests | where name contains "POST" | project timestamp, name, url, success, duration , operation_Name, operation_Id, session_Id;
+recentReqs
+| join kind=inner (
+   traces
+   | project message, operation_Id
+) on operation_Id
+| join kind= inner (
+   exceptions
+   | project message, method, problemId, operation_Id, details, assembly
+) on operation_Id

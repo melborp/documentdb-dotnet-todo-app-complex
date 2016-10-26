@@ -7,10 +7,11 @@
     using System.Configuration;
     using System;
     using System.IO;
+    using System.Collections.Generic;
 
     public class ItemController : Controller
     {
-        /*
+
         private void TracePost(string method)
         {
             //Store the posted data
@@ -21,24 +22,24 @@
                            Microsoft.ApplicationInsights.DataContracts.SeverityLevel.Warning,
                            new Dictionary<string, string> { { "PostData", "true" }, { "Method", method } });
         }
-         */
+
         [ActionName("Index")]
         public async Task<ActionResult> IndexAsync()
         {
-            var apiUrl = ConfigurationManager.AppSettings["api"];
-            using (var client = new WebClient())
-            {
-                using (var stream = client.OpenRead(new Uri(apiUrl + "/api/Values/")))
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    ViewBag.Values = reader.ReadToEnd();
-                }
-            }
+            //var apiUrl = ConfigurationManager.AppSettings["api"];
+            //using (var client = new WebClient())
+            //{
+            //    using (var stream = client.OpenRead(new Uri(apiUrl + "/api/Values/")))
+            //    using (StreamReader reader = new StreamReader(stream))
+            //    {
+            //        ViewBag.Values = reader.ReadToEnd();
+            //    }
+            //}
 
-            var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
-            return View(items);
+            //var items = await DocumentDBRepository<Item>.GetItemsAsync(d => !d.Completed);
+            //return View(items);
 
-            /*
+
             //Fake dependency call for demo
             var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
             var success = false;
@@ -64,7 +65,7 @@
                 timer.Stop();
                 telemetry.TrackDependency("IndexAsyncFakeDependency", "IndexAsync - Fake Call", startTime, timer.Elapsed, success);
             }
-            */
+
         }
 
 #pragma warning disable 1998
@@ -80,6 +81,7 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Name,Description,Completed")] Item item)
         {
+            TracePost("CreateAsync");
             if (ModelState.IsValid)
             {
                 await DocumentDBRepository<Item>.CreateItemAsync(item);
