@@ -11,7 +11,7 @@ namespace api
     {
         protected void Application_Start()
         {
-            //TelemetryConfiguration.Active.InstrumentationKey = ConfigurationManager.AppSettings["InstrumentationKey"];
+            TelemetryConfiguration.Active.InstrumentationKey = ConfigurationManager.AppSettings["InstrumentationKey"];
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
