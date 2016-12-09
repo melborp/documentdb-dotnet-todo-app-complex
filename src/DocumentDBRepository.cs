@@ -71,6 +71,7 @@
 
         public static async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
         {
+            telemetry.TrackEvent("GetItem");
             IDocumentQuery<T> query = client.CreateDocumentQuery<T>(
                 UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId),
                 new FeedOptions { MaxItemCount = -1 })
@@ -88,16 +89,19 @@
 
         public static async Task<Document> CreateItemAsync(T item)
         {
+            telemetry.TrackEvent("CreateItem");
             return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DatabaseId, CollectionId), item);
         }
 
         public static async Task<Document> UpdateItemAsync(string id, T item)
         {
+            telemetry.TrackEvent("UpdateItem");
             return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id), item);
         }
 
         public static async Task DeleteItemAsync(string id)
         {
+            telemetry.TrackEvent("DeleteItem");
             await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
         }
 
