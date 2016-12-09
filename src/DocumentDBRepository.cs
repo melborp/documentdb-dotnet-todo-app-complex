@@ -17,7 +17,7 @@
         private static readonly string CollectionId = ConfigurationManager.AppSettings["collection"];
         private static DocumentClient client;
 
-        /*
+
         private static Microsoft.ApplicationInsights.TelemetryClient telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
 
         public static async Task<T> GetItemAsync(string id)
@@ -46,28 +46,28 @@
                 }
             }
         }
-        */
 
 
-        public static async Task<T> GetItemAsync(string id)
-        {
-            try
-            {
-                Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
-                return (T)(dynamic)document;
-            }
-            catch (DocumentClientException e)
-            {
-                if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-        }
+
+        //public static async Task<T> GetItemAsync(string id)
+        //{
+        //    try
+        //    {
+        //        Document document = await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+        //        return (T)(dynamic)document;
+        //    }
+        //    catch (DocumentClientException e)
+        //    {
+        //        if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //}
 
         public static async Task<IEnumerable<T>> GetItemsAsync(Expression<Func<T, bool>> predicate)
         {
