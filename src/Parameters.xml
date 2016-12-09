@@ -24,7 +24,7 @@
       scope="Web\.config$"
       match="//appSettings/add[@key='InstrumentationKey']/@value" />
   </parameter>
-  <parameter name="appsetting endpoint"
+  <parameter name="appsetting api_url"
   description="."
   defaultValue="__api_url__"
   tags="">
